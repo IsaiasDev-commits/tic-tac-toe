@@ -1,0 +1,7 @@
+# Ignorar archivos de configuración del usuario
+.DS_Store
+.vscode/
+.config/
+.bash_history
+*.xml
+.android/
