@@ -75,7 +75,10 @@ function checkWinner() {
 }
 
 function highlightWinner(pattern) {
-    pattern.forEach(index => cells[index].classList.add('winner'));
+    pattern.forEach(index => {
+        cells[index].classList.add('winner');
+        cells[index].style.transition = 'background-color 0.3s ease, transform 0.3s ease'; // Asegúrate de que las transiciones se apliquen correctamente
+    });
 }
 
 function handleClick(event) {
@@ -123,9 +126,14 @@ function resetGame() {
     gameActive = true;
     statusText.textContent = `Turno de ${currentPlayer}`;
 
-    if (player === 'O') {
-        aiMove();
+    if (currentPlayer === ai) {
+        setTimeout(aiMove, 500); // Retraso para la IA
     }
+}
+
+function resetScore() {
+    scores = { X: 0, O: 0 };
+    updateScoreboard();
 }
 
 function updateScoreboard() {
@@ -133,15 +141,10 @@ function updateScoreboard() {
     scoreO.textContent = scores.O;
 }
 
-function resetScores() {
-    scores = { X: 0, O: 0 };
-    updateScoreboard();
-}
-
-// Eventos de selección de jugador
+// Iniciar el juego cuando se elige un símbolo
 chooseX.addEventListener('click', () => startGame('X'));
 chooseO.addEventListener('click', () => startGame('O'));
 
-// Botones de control
+// Reiniciar el juego y la puntuación
 restartBtn.addEventListener('click', resetGame);
-resetScoreBtn.addEventListener('click', resetScores);
+resetScoreBtn.addEventListener('click', resetScore);
