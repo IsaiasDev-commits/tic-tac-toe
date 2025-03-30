@@ -3,29 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tic Tac Toe</title>
+    <title>Juego de Tres en Línea</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Tic Tac Toe</h1>
+
+    <h1>Tres en Línea</h1>
 
     <!-- Selección de jugador -->
     <div id="player-selection">
-        <p>Elige tu símbolo:</p>
         <button id="choose-x">Jugar como X</button>
         <button id="choose-o">Jugar como O</button>
     </div>
 
-    <!-- Marcador -->
-    <div id="scoreboard" class="hidden">
-        <p>Puntuación:</p>
-        <p>X: <span id="score-x">0</span> | O: <span id="score-o">0</span></p>
-    </div>
-
-    <!-- Estado del juego -->
-    <p id="status" class="hidden">Turno de X</p>
-
-    <!-- Tablero (se oculta hasta que se elija un símbolo) -->
+    <!-- Tablero de juego -->
     <div id="game-board" class="hidden">
         <div class="row">
             <div class="cell" data-cell-index="0"></div>
@@ -44,11 +35,27 @@
         </div>
     </div>
 
-    <!-- Botones de reinicio -->
+    <!-- Estado del juego -->
+    <div id="status" class="hidden">Turno de X</div>
+
+    <!-- Marcador -->
+    <div id="scoreboard" class="hidden">
+        <p>Jugador X: <span id="score-x">0</span></p>
+        <p>Jugador O: <span id="score-o">0</span></p>
+    </div>
+
+    <!-- Botones -->
     <button id="restart-btn" class="hidden">Reiniciar Juego</button>
-    <button id="reset-score-btn" class="hidden">Reiniciar Puntuación</button>
+    <button id="reset-score-btn" class="hidden">Resetear Puntajes</button>
+
+    <!-- Archivos de sonido (Asegúrate de que los archivos estén en una carpeta llamada "sounds") -->
+    <audio id="sound-win" src="sounds/win.mp3" preload="auto"></audio>
+    <audio id="sound-lose" src="sounds/lose.mp3" preload="auto"></audio>
+    <audio id="sound-draw" src="sounds/draw.mp3" preload="auto"></audio>
 
     <script src="script.js"></script>
 </body>
 </html>
+
+
 

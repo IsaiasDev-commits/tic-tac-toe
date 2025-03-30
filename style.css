@@ -32,12 +32,37 @@ h1 {
   align-items: center;
   font-size: 2rem;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease; /* Transiciones suaves */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Transiciones más suaves */
 }
 
 .cell:hover {
   background-color: #f0f0f0; /* Color al pasar el cursor sobre la celda */
   transform: scale(1.1); /* Efecto de aumento al pasar el cursor */
+}
+
+.cell[data-value='X'] {
+  color: #ff5733; /* Rojo anaranjado para X */
+}
+
+.cell[data-value='O'] {
+  color: #3498db; /* Azul para O */
+}
+
+.winner {
+  background-color: #ffeb3b; /* Color amarillo para la celda ganadora */
+  animation: blink 0.5s infinite alternate; /* Parpadeo */
+  box-shadow: 0 0 10px rgba(255, 235, 59, 0.6); /* Sombra de resaltado */
+}
+
+.lose {
+  background-color: red; /* Color de fondo rojo para la pérdida */
+  color: white;           /* Texto blanco */
+  font-weight: bold;
+}
+
+@keyframes blink {
+  0% { background-color: #ffeb3b; }
+  100% { background-color: #ffd700; }
 }
 
 button {
@@ -49,19 +74,16 @@ button {
   color: white;
   border: none;
   border-radius: 5px;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Añadimos transición */
 }
 
 button:hover {
   background-color: #45a049; /* Cambio de color al pasar el cursor */
+  transform: scale(1.05); /* Efecto de aumento al pasar el cursor */
 }
 
 .hidden {
   display: none;
-}
-
-.winner {
-  background-color: #ffeb3b; /* Color amarillo para la celda ganadora */
 }
 
 #status {
@@ -79,3 +101,10 @@ button:hover {
   font-size: 1.2rem;
   color: #333; /* Color de texto para el marcador */
 }
+
+#scoreboard p span {
+  font-weight: bold; /* Resaltar el puntaje */
+}
+
+
+
