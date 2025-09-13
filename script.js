@@ -28,7 +28,7 @@ const soundWin = new Audio('sounds/win.mp3');
 const soundLose = new Audio('sounds/lose.mp3');
 const soundDraw = new Audio('sounds/draw.mp3');
 
-// Función Minimax para hacer que la IA sea más difícil
+
 function minimax(board, depth, isMaximizingPlayer) {
     const scores = { X: -1, O: 1, tie: 0 };
 
@@ -37,7 +37,7 @@ function minimax(board, depth, isMaximizingPlayer) {
         return scores[winner];
     }
 
-    if (!board.includes('')) return scores.tie; // Empate si no hay más movimientos
+    if (!board.includes('')) return scores.tie; 
 
     let bestScore = isMaximizingPlayer ? -Infinity : Infinity;
 
@@ -45,7 +45,7 @@ function minimax(board, depth, isMaximizingPlayer) {
         if (board[i] === '') {
             board[i] = isMaximizingPlayer ? ai : player;
             let score = minimax(board, depth + 1, !isMaximizingPlayer);
-            board[i] = ''; // Deshacer movimiento
+            board[i] = ''; 
 
             bestScore = isMaximizingPlayer
                 ? Math.max(score, bestScore)
@@ -63,7 +63,7 @@ function aiMove() {
         if (gameBoard[i] === '') {
             gameBoard[i] = ai;
             let score = minimax(gameBoard, 0, false);
-            gameBoard[i] = ''; // Deshacer movimiento
+            gameBoard[i] = ''; 
 
             if (score > bestScore) {
                 bestScore = score;
@@ -89,7 +89,7 @@ function checkWinnerMinimax(board) {
         }
     }
 
-    return board.includes('') ? null : 'tie'; // Empate si no hay más espacios vacíos
+    return board.includes('') ? null : 'tie'; 
 }
 
 function startGame(symbol) {
@@ -104,7 +104,7 @@ function startGame(symbol) {
     gameActive = true;
     currentPlayer = 'X';
 
-    // Ocultar selección y mostrar el tablero
+    
     playerSelection.classList.add('hidden');
     gameBoardContainer.classList.remove('hidden');
     statusText.classList.remove('hidden');
@@ -114,10 +114,10 @@ function startGame(symbol) {
 
     statusText.textContent = `Turno de ${currentPlayer}`;
     
-    // Asignar eventos a las celdas
+    
     cells.forEach(cell => cell.addEventListener('click', handleClick));
 
-    // Hacer que la IA siempre empiece, independientemente del símbolo del jugador
+    
     aiMove();
 }
 
@@ -131,16 +131,16 @@ function checkWinner() {
                 statusText.textContent = `${currentPlayer} gana!`;
                 scores[currentPlayer]++;
                 updateScoreboard();
-                soundWin.play();  // Reproduce sonido cuando hay un ganador
+                soundWin.play();  
                 gameActive = false;
                 return true;
             } else {
-                // Si la IA gana (el jugador pierde)
-                highlightLoser(pattern);  // Marcar las celdas perdedoras con rojo
+                
+                highlightLoser(pattern);  
                 statusText.textContent = `${ai} gana!`;
                 scores[ai]++;
                 updateScoreboard();
-                soundLose.play();  // Reproduce sonido de pérdida
+                soundLose.play();  
                 gameActive = false;
                 return true;
             }
@@ -149,7 +149,7 @@ function checkWinner() {
 
     if (!gameBoard.includes('')) {
         statusText.textContent = "Empate!";
-        soundDraw.play();  // Reproduce sonido de empate
+        soundDraw.play();
         gameActive = false;
         return true;
     }
@@ -185,7 +185,7 @@ function handleClick(event) {
             statusText.textContent = `Turno de ${currentPlayer}`;
 
             if (currentPlayer === ai) {
-                setTimeout(aiMove, 500); // Retraso para que parezca más natural
+                setTimeout(aiMove, 500); 
             }
         }
     }
@@ -197,8 +197,7 @@ function resetGame() {
         cell.textContent = '';
         cell.classList.remove('winner', 'lose');
     });
-
-    // Mostrar selección de jugador nuevamente
+ 
     playerSelection.classList.remove('hidden');
     gameBoardContainer.classList.add('hidden');
     statusText.classList.add('hidden');
@@ -217,11 +216,11 @@ function updateScoreboard() {
     scoreO.textContent = scores.O;
 }
 
-// Iniciar el juego cuando se elige un símbolo
+
 chooseX.addEventListener('click', () => startGame('X'));
 chooseO.addEventListener('click', () => startGame('O'));
 
-// Reiniciar el juego y la puntuación
+
 restartBtn.addEventListener('click', resetGame);
 resetScoreBtn.addEventListener('click', resetScore);
 
